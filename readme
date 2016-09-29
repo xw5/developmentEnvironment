@@ -1,0 +1,22 @@
+这是我工作中用的一个前端的开发环境。
+1、使用sass实现CSS模块化。
+2、webpack来做JS的模块化管理。
+3、gulp用来构建打包。
+注：支持@@include('*.html')直接引入HTML片段，一个页面基本上可以分为头部，底部，中间内容区，我们可以把这三块HTML定义成独立HTML片段放到include下供引用，方便页面共用
+    同时支持图片自动压缩（特别是PNG可以减少60%左右的体积，跟https://tinypng.com/的压缩效果差不多）；
+    SASS自动解析压缩，支持把CSS以一模块一块的方式写成SCSS文件，哪里需要用到直接import即可；
+    JS自动压缩混淆，支持JS模块化书写，根据功能模块书写JS，再在需要的地方直接require即可；
+    支持自动刷新同步，当在修改文件的时候只需按下ctrl+S即可实现自动同步修改到浏览器，脱离一修改一F5的痛苦；
+    一键打包，只需要执行一次构建操作即可得到dist目录，拿到最终上线文件。
+
+目录介绍：
+images文件夹为开发的图片文件存放目录，支持再建子目录存放图片
+sass文件夹所有scss文件存放目录，子目录page里存放最终要被解析的scss文件，page外是一些模块的scss文件
+js文件夹是所有JS的存放文件,下面直接存放最终要被生成到dist/js的js文件，子目录lib是jquery的存放目录,子目录core是存放模化JS的地方，plugins是存放插件的地方
+include是存放HTML片段的地方，主目录下的HTML文件可以直接通过@@include('include/*.html')引入需要代码片段
+dist是最终生成的前端文件，也是最终能放线上去文件，由gulp直接生成
+
+主要配置文件：
+gulpfile是gulp配置文件
+package.json是需要的NODE模块列表，直接在当前目录下执行npm init即可实现自动安装所需要node模块，把node模块装到当前项目的父级感觉是一个好的选择
+webpack.config.js是webpack的配置文件
