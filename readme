@@ -2,10 +2,10 @@
 1、使用sass实现CSS模块化。
 2、webpack来做JS的模块化管理。
 3、gulp用来构建打包。
-注：支持@@include('*.html')直接引入HTML片段，一个页面基本上可以分为头部，底部，中间内容区，我们可以把这三块HTML定义成独立HTML片段放到include下供引用，方便页面共用
+注：支持@@include('*.html')直接引入HTML片段，一个页面基本上可以分为头部，底部，中间内容区，我们可以把这三块HTML定义成独立HTML片段放到include下供引用，方便页面共用，具体使用方式看下index.html即明白
     同时支持图片自动压缩（特别是PNG可以减少60%左右的体积，跟 https://tinypng.com/ 压缩效果差不多）；
-    SASS自动解析压缩，支持把CSS以一模块一块的方式写成SCSS文件，哪里需要用到直接import即可；
-    JS自动压缩混淆，支持JS模块化书写，根据功能模块书写JS，再在需要的地方直接require即可；
+    SASS自动解析压缩，支持把CSS以一模块一模块的方式写成SCSS文件，哪里需要用到直接@import即可，具体使用方式看下sass/page/index.scss即明白；
+    JS自动压缩混淆，支持JS模块化书写，根据功能模块书写JS，再在需要的地方直接require即可,具体使用方式看下js/index.js即明白；
     支持自动刷新同步，当在修改文件的时候只需按下ctrl+S即可实现自动同步修改到浏览器，脱离一修改一F5的痛苦；
     一键打包，只需要执行一次构建操作即可得到dist目录，拿到最终上线文件。
 
@@ -20,3 +20,8 @@ dist是最终生成的前端文件，也是最终能放线上去文件，由gulp
 gulpfile是gulp配置文件
 package.json是需要的NODE模块列表，直接在当前目录下执行npm init即可实现自动安装所需要node模块，把node模块装到当前项目的父级感觉是一个好的选择
 webpack.config.js是webpack的配置文件
+
+使用步骤：
+npm install（如有安装失败的就可以删掉重新安装一下，由于被墙的厉害，经常会出现换败的情况，多试几次，或者直接使用淘宝镜像cnpm来安装）
+gulp default（会自动打开一个 locahost:3000端口的本地服务器，默认访问的是dist下的index.html，执行此命令即可开台开发工作）
+gulp build(这里文件上线前应该执行的一命令，他会清空dist目录，重新打包一个新的文件，删掉开发过程中产生的多余文件)
